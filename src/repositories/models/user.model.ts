@@ -15,4 +15,5 @@ const UserSchema = new Schema<UserRecord>({
   email: String,
 });
 
-export const UserModel = mongoose.model('users', UserSchema);
+const UserModel = mongoose.model('users', UserSchema);
+export default UserModel;

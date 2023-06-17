@@ -1,7 +1,10 @@
-import { UserModel, UserRecord } from './models/user.model';
+import UserModel, {
+  UserRecord,
+  UserRecordZ,
+} from '#/repositories/models/user.model';
 
 const create = (record: UserRecord): Promise<UserRecord> => {
-  return UserModel.create(record);
+  return UserModel.create(UserRecordZ.parse(record));
 };
 
 const findOne = (id: string): Promise<UserRecord | null> => {
@@ -17,9 +20,12 @@ const remove = async (id: string): Promise<void> => {
 
 const update = async (
   id: string,
-  record: Partial<UserRecord>,
+  record: UserRecord,
 ): Promise<UserRecord | null> => {
-  await UserModel.findOneAndUpdate({ _id: id }, { $set: record }).exec();
+  await UserModel.findOneAndUpdate(
+    { _id: id },
+    { $set: UserRecordZ.parse(record) },
+  ).exec();
   return await findOne(id);
 };
 

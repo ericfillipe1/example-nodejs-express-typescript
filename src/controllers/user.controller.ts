@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import { UserRecordZ } from '../repositories/models/user.model';
 import UserRepo from '../repositories/user.repo';
+import returnError from '#/shared/returnError.shared';
 
 const create = async (req: Request, res: Response) => {
   try {
     const user = UserRecordZ.parse(req.body);
     res.json(await UserRepo.create(user));
   } catch (e) {
-    res.status(500).json({ msg: 'Erro' });
+    returnError(e, res);
   }
 };
 const findOne = async (req: Request, res: Response) => {
@@ -15,14 +16,14 @@ const findOne = async (req: Request, res: Response) => {
     const { id } = req.params;
     res.json(await UserRepo.findOne(id));
   } catch (e) {
-    res.status(500).json({ msg: 'Erro' });
+    returnError(e, res);
   }
 };
 const find = async (_: Request, res: Response) => {
   try {
     res.json(await UserRepo.find());
   } catch (e) {
-    res.status(500).json({ msg: 'Erro' });
+    returnError(e, res);
   }
 };
 const update = async (req: Request, res: Response) => {
@@ -31,7 +32,7 @@ const update = async (req: Request, res: Response) => {
     const user = UserRecordZ.parse(req.body);
     res.json(await UserRepo.update(id, user));
   } catch (e) {
-    res.status(500).json({ msg: 'Erro' });
+    returnError(e, res);
   }
 };
 const remove = async (req: Request, res: Response) => {
@@ -39,7 +40,7 @@ const remove = async (req: Request, res: Response) => {
     const { id } = req.params;
     res.json(await UserRepo.remove(id));
   } catch (e) {
-    res.status(500).json({ msg: 'Erro' });
+    returnError(e, res);
   }
 };
 
