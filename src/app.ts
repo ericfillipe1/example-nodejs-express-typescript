@@ -1,8 +1,8 @@
-import express, { Request, Response } from 'express';
-
+import express from 'express';
+import mongoose from 'mongoose';
 const app = express();
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello, world!');
-});
+app.use(express.json());
+mongoose.connect('mongodb://127.0.0.1:27017/myapp');
+
 export default app;

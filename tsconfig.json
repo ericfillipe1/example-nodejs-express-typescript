@@ -5,8 +5,5 @@
       "outDir": "dist",
       "strict": true,
       "esModuleInterop": true,
-      "paths": {
-        "#/*": ["./src/*"]
-      },
     }
   }

@@ -9,7 +9,6 @@ module.exports = {
     eqeqeq: 'error',
     'no-console': 'warn',
     'prettier/prettier': 'error',
-    'react/display-name': 'off',
   },
   parserOptions: {
     ecmaVersion: 6,
