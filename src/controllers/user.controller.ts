@@ -1,12 +1,10 @@
 import { Request, Response } from 'express';
-import { UserRecordZ } from '../repositories/models/user.model';
 import UserRepo from '../repositories/user.repo';
 import returnError from '#/shared/returnError.shared';
 
 const create = async (req: Request, res: Response) => {
   try {
-    const user = UserRecordZ.parse(req.body);
-    res.json(await UserRepo.create(user));
+    res.json(await UserRepo.create(req.body));
   } catch (e) {
     returnError(e, res);
   }
@@ -29,8 +27,7 @@ const find = async (_: Request, res: Response) => {
 const update = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const user = UserRecordZ.parse(req.body);
-    res.json(await UserRepo.update(id, user));
+    res.json(await UserRepo.update(id, req.body));
   } catch (e) {
     returnError(e, res);
   }
